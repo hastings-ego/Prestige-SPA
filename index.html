@@ -1668,8 +1668,9 @@
             buildUrl(endpoint, params = {}) {
                 let url;
                 if (this.isCrossOrigin()) {
-                    url = new URL('/store-proxy/' + CONFIG.STORE_ID + '/', window.location.origin);
+                    url = new URL(CONFIG.API_BASE + '/' + CONFIG.STORE_ID + '/', window.location.origin);
                     url.searchParams.set('target_base', CONFIG.API_BASE);
+
                 } else {
                     url = new URL(CONFIG.API_BASE + '/' + CONFIG.STORE_ID + '/', window.location.origin);
                 }
