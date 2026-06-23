@@ -1631,6 +1631,85 @@
                 class="text-brand-gold">Varsity Market</a> Technologies</p>
     </footer>
 
+    <div id="splash-screen" class="splash-overlay">
+        <div class="splash-content">
+            <img src="assets/img/Frame_2.webp" alt="Brand Logo" class="splash-logo">
+        </div>
+    </div>
+    <style>
+        /* Full-screen overlay container */
+        .splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #0a0a0a;
+            /* Sleek dark background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Ensures it sits above absolutely everything */
+            opacity: 1;
+            transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+            visibility: visible;
+        }
+
+        /* Content wrapper */
+        .splash-content {
+            text-align: center;
+        }
+
+        /* Logo sizing & subtle entry animation */
+        .splash-logo {
+            max-width: calc(100% - 2rem);
+            width: 3cp; 
+            /* Adjust size as needed */
+            height: auto;
+            display: block;
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+
+        /* Hidden state triggered by JS */
+        .splash-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Keyframes for a sharp, high-end logo entrance */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const splash = document.getElementById("splash-screen");
+
+    // Check if the user has already seen the splash screen in this session
+    if (!sessionStorage.getItem("splashSeen")) {
+        // Keep it visible for 2 seconds, then trigger the fade out
+        setTimeout(() => {
+            splash.classList.add("fade-out");
+            // Set flag so it doesn't show again on next page clicks
+            sessionStorage.setItem("splashSeen", "true");
+        }, 2000); 
+    } else {
+        // If they have seen it, remove it instantly without flashing
+        splash.style.display = "none";
+    }
+});
+    </script>
+
 
     <!-- ==================== JAVASCRIPT ==================== -->
     <script type="text/javascript">
